@@ -2,6 +2,7 @@ var choices = document.getElementsByClassName("choices");
 var computerChoice;
 var computerChoices = ["rock", "paper", "scissors"];
 var loseCount = 0;
+var roundCount = 0;
 var tieCount = 0;
 var userChoice;
 var winCount = 0;
@@ -16,6 +17,7 @@ function startNewGame() {
   winCount = 0;
   tieCount = 0;
   loseCount = 0;
+  roundCount = 0;
   displayStats();
   clearDisplay();
 };
@@ -26,6 +28,7 @@ function startRound() {
   displayUserChoice(userChoice);
   displayComputerChoice(computerChoice);
   displayRoundResult(getRoundResult());
+  roundCount++;
   displayStats();
 };
 
@@ -101,8 +104,30 @@ function displayRoundResult(result) {
 };
 
 function displayStats() {
-  document.getElementById("stats").innerHTML = "Stats: " + winCount + " wins " + tieCount + " ties " + loseCount + " loses.";
+  document.getElementById("stats").innerHTML = "Stats: " + winStats() + " " + tieStats() + " " + loseStats() + " .";
 }
+
+function winStats() {
+  return "Wins: " + winCount + " (" + statPercent(winCount).toFixed(2) + "%)" 
+};
+
+function tieStats() {
+  return "Ties: " + tieCount + " (" + statPercent(tieCount).toFixed(2) + "%)" 
+};
+
+function loseStats() {
+  return "Loses: " + loseCount + " (" + statPercent(loseCount).toFixed(2) + "%)" 
+};
+
+function statPercent(statCount) {
+
+  if (roundCount > 0) {
+    return statCount / roundCount * 100
+  } else {
+    return 0
+  }
+
+};
 
 function clearDisplay() {
   document.getElementById("user-choice").innerHTML = "";
