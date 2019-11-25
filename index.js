@@ -6,9 +6,18 @@ var tieCount = 0;
 var userChoice;
 var winCount = 0;
 
+document.getElementById("new-game").addEventListener("click", startNewGame);
 
 for(var i = 0; i < choices.length; i++) {
   choices[i].addEventListener("click", startRound);
+};
+
+function startNewGame() {
+  winCount = 0;
+  tieCount = 0;
+  loseCount = 0;
+  displayStats();
+  clearDisplay();
 };
 
 function startRound() {
@@ -80,17 +89,23 @@ function loseResult() {
 };
 
 function displayUserChoice(choice) {
-  document.getElementById("user-choice").innerHTML = "You chose " + choice + "."
+  document.getElementById("user-choice").innerHTML = "You chose " + choice + ".";
 };
 
 function displayComputerChoice(choice) {
-  document.getElementById("computer-choice").innerHTML = "The computer chose " + choice + "."
+  document.getElementById("computer-choice").innerHTML = "The computer chose " + choice + ".";
 };
 
 function displayRoundResult(result) {
-  document.getElementById("round-result").innerHTML = result
+  document.getElementById("round-result").innerHTML = result;
 };
 
 function displayStats() {
-  document.getElementById("stats").innerHTML = winCount + " wins " + tieCount + " ties " + loseCount + " loses."
+  document.getElementById("stats").innerHTML = "Stats: " + winCount + " wins " + tieCount + " ties " + loseCount + " loses.";
+}
+
+function clearDisplay() {
+  document.getElementById("user-choice").innerHTML = "";
+  document.getElementById("computer-choice").innerHTML = "";
+  document.getElementById("round-result").innerHTML = "";
 }
