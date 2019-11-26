@@ -3,6 +3,7 @@ var computerChoice;
 var computerChoices = ["rock", "paper", "scissors"];
 var loseCount = 0;
 var roundCount = 0;
+var roundResultDisplay = document.getElementById("round-result");
 var tieCount = 0;
 var userChoice;
 var winCount = 0;
@@ -78,16 +79,30 @@ function scissorsResult(opponentChoice) {
 
 function winResult() {
   winCount++;
+  if (roundResultDisplay.classList.contains("lose")) {
+    roundResultDisplay.classList.remove("lose");
+  }
+  roundResultDisplay.classList.add("win");
   return "You win!";
 };
 
 function tieResult() {
   tieCount++;
+  if (roundResultDisplay.classList.contains("win")){
+    roundResultDisplay.classList.remove("win");
+  };
+  if (roundResultDisplay.classList.contains("lose")){
+    roundResultDisplay.classList.remove("lose");
+  };
   return "Its a tie!";
 };
 
 function loseResult() {
   loseCount++;
+  if (roundResultDisplay.classList.contains("win")) {
+    roundResultDisplay.classList.remove("win");
+  };
+  roundResultDisplay.classList.add("lose");
   return "You lose!";
 };
 
